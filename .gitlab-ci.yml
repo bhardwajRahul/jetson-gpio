@@ -1,5 +1,11 @@
 build:
   stage: build
+  tags: 
+    - os/linux-arm
+  image: arm64v8/ubuntu:22.04   # ARM64 base image
+  before_script:
+    - apt-get update
+    - apt-get install -y debhelper dh-python python-all python-all-dev python-setuptools python3-all python3-all-dev python3-setuptools dpkg-dev git
   script:
     # Build Debian package
     - dpkg-buildpackage -us -uc
